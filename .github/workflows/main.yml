@@ -24,19 +24,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Deploy to server via SSH
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@v0.1.9
-        with:
-          host: 192.168.1.1          # Replace with your server IP or domain
-          username: root             # Replace with your SSH username
-          key: |
-            -----BEGIN OPENSSH PRIVATE KEY-----
-            YourPrivateKeyHere
-            -----END OPENSSH PRIVATE KEY-----
-          port: 22
-          script: |
-            cd /var/www/my-nodejs-app
-            git pull origin main
-            npm install
-            pm2 restart app
+      # Step 4: Deploy locally
+      - name: Deploy Locally
+        run: |
+          cd ci-cd-practice-githubaction
+          git pull origin main
+          npm install
+          nohup node index.js &
