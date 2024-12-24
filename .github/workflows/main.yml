@@ -27,7 +27,7 @@ jobs:
       # Step 4: Deploy locally
       - name: Deploy Locally
         run: |
-          cd ci-cd-practice-githubaction
+          
           git pull origin main
           npm install
           nohup node index.js &
